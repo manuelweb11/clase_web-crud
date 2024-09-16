@@ -1,0 +1,45 @@
+<table border="1">
+        <tr>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>DNI</td>
+            <td>EMAIL</td>
+            <td>clave</td>
+        </tr>
+        <?php
+            $obj= new usuario();//se crea un objeto->$obj  de la clase metodos
+            $sql ="SELECT id,nombre,apellido,dni,email,clave FROM usuarios WHERE id = $var_id;";
+            $datos=$obj->mostrarRegistro($sql);//$obj llama al metodo mostrarregistro
+            // guardados en $datos usando el foreach itera cada registro ,
+            // $datos es la variable que contiene los datos devueltos por la consulta SQL y "as" es una palabra clave 
+            // utilizada para asignar cada valor del array de $datos a una variable temporal llamada $key.
+            foreach($datos as $key){
+        ?>
+        <tr>
+             <!-- En cada iteración del bucle, se asigna el siguiente valor del array de $datos 
+            a la variable $key, lo que permite acceder a cada campo de cada registro en la 
+            consulta SQL utilizando la sintaxis de matriz asociativa, por ejemplo, $key['nombre'] 
+            para obtener el valor del campo "nombre" de cada registro. -->
+            <td><?php echo $key['nombre']; ?></td> 
+            <td><?php echo $key['apellido']; ?></td>
+            <td><?php echo $key['dni']; ?></td>
+            <td><?php echo $key['email']; ?></td>
+            <td><?php echo $key['clave']; ?></td>
+            
+            <!-- se está creando un enlace <a> que lleva a la página editar.php y 
+                le pasa el parámetro id mediante la URL. El valor del parámetro id 
+                es el valor del campo id del registro correspondiente de la tabla cliente. 
+                Al hacer clic en este enlace, se envía una solicitud HTTP GET que contiene 
+                el valor del parámetro id en la URL. Luego, en la página editar.php, se 
+                recibe este valor mediante la línea de código: $id=$_GET['id'] -->
+                <!-- editar.php?id=1  ejemplo  -->
+            <td><a href="../procesos/editar.php?id=<?php echo $key['id']; ?>">Editar clave </a></td>
+                <!-- crea un enlace que, al hacer clic en él, envía una solicitud HTTP GET y pasara el parametro id 
+            ese id lo recibira eliminar.php-->
+            <!-- <td><a href="procesos/eliminar.php?id=">Eliminar</a></td> -->
+        </tr>
+
+        <?php
+            }
+        ?>
+    </table>

@@ -1,0 +1,11 @@
+Los códigos que mencionas se utilizan para aplicar limpieza y filtrado de los datos recibidos del formulario y los datos obtenidos de la base de datos. Esto es importante porque los datos pueden contener caracteres no deseados o maliciosos que pueden comprometer la seguridad de la aplicación o el sitio web.
+
+La función filter_input() se utiliza para filtrar y validar los datos de entrada en función del tipo de entrada y el filtro aplicado. En el primer código que mencionas, se utiliza para filtrar el correo electrónico y la contraseña. El primer parámetro es el tipo de entrada, en este caso INPUT_POST, que indica que los datos se recibieron mediante una petición HTTP POST. El segundo parámetro es el nombre del campo que se va a filtrar, en este caso 'txtemail' y 'txtclave'. Y el tercer parámetro es el filtro que se va a aplicar, en este caso FILTER_SANITIZE_EMAIL y FILTER_SANITIZE_STRING, respectivamente.
+
+El filtro FILTER_SANITIZE_EMAIL elimina todos los caracteres no válidos del correo electrónico, y el filtro FILTER_SANITIZE_STRING elimina todos los caracteres no válidos de una cadena. Estos filtros ayudan a garantizar que los datos sean válidos y seguros antes de ser utilizados por la aplicación.
+
+En el segundo código que mencionas, se utiliza la función filter_var() para filtrar y validar los datos del usuario obtenidos de la base de datos. En este caso, se filtra el id y el nombre del usuario. La función filter_var() también tiene un segundo parámetro que es el filtro que se va a aplicar. En este caso, se utiliza FILTER_SANITIZE_NUMBER_INT para filtrar el id, y FILTER_SANITIZE_STRING para filtrar el nombre.
+
+El filtro FILTER_SANITIZE_NUMBER_INT elimina todos los caracteres no numéricos del valor, y el filtro FILTER_SANITIZE_STRING elimina todos los caracteres no válidos de una cadena. Esto ayuda a garantizar que los datos sean válidos y seguros antes de ser utilizados por la aplicación.
+
+La limpieza y filtrado de los datos se debe aplicar en todas las sesiones donde se reciben y procesan datos, ya sea en formularios, solicitudes HTTP, datos de la base de datos, entre otros. Es importante aplicar una limpieza y filtrado adecuados para garantizar la seguridad de la aplicación y prevenir posibles vulnerabilidades y ataques.
